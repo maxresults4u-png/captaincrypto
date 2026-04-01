@@ -203,7 +203,12 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
   </div>
   <a href="coin-store.html" class="nav-btn btn-buy">BUY GC</a>
   <a href="redeem.html" class="nav-btn btn-redeem">REDEEM</a>
-  <div class="nav-avatar">K</div>
+  <div class="nav-avatar" id="nav-avatar" onclick="toggleAvatarMenu()">K</div>
+  <div id="avatar-menu" style="display:none;position:fixed;top:58px;right:12px;z-index:300;background:linear-gradient(180deg,#0d0f22,#080a18);border:1px solid rgba(255,215,0,.2);border-radius:10px;min-width:160px;padding:6px 0;box-shadow:0 8px 24px rgba(0,0,0,.6);">
+    <a href="account.html" style="display:block;padding:11px 18px;color:#ccc;text-decoration:none;font-size:14px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">👤 My Account</a>
+    <a href="redeem.html" style="display:block;padding:11px 18px;color:#ccc;text-decoration:none;font-size:14px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">💰 Redeem SC</a>
+    <a href="#" onclick="doLogout()" style="display:block;padding:11px 18px;color:#ff6060;text-decoration:none;font-size:14px;font-weight:600;">🚪 Log Out</a>
+  </div>
 <div class="hamburger" onclick="toggleMobileMenu()" id="hamburger">☰</div>
 <div class="mobile-menu" id="mobile-menu">
   <a href="lobby.html">🎰 Lobby</a>
@@ -568,7 +573,21 @@ setInterval(()=>{stk+=0.00274;document.getElementById("stk-amt").textContent=stk
 document.querySelectorAll(".ftab").forEach(t=>t.addEventListener("click",function(){document.querySelectorAll(".ftab").forEach(x=>x.classList.remove("on"));this.classList.add("on");});
 </script>
 <script>
-function toggleMobileMenu(){
+function toggleAvatarMenu(){
+  const m=document.getElementById("avatar-menu");
+  m.style.display=m.style.display==="none"?"block":"none";
+}
+document.addEventListener("click",function(e){
+  const m=document.getElementById("avatar-menu");
+  const a=document.getElementById("nav-avatar");
+  if(m&&a&&!m.contains(e.target)&&!a.contains(e.target))m.style.display="none";
+});
+function doLogout(){
+  localStorage.removeItem("cc_token");
+  localStorage.removeItem("cc_user");
+  window.location="login.html";
+}
+
   const m=document.getElementById("mobile-menu");
   const h=document.getElementById("hamburger");
   if(!m||!h)return;
