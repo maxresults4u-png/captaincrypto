@@ -332,9 +332,9 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
         <div class="badge-hot">HOT 🔥</div><div class="badge-jp">JACKPOT</div>
         <div class="badge-fair">⛓ FAIR</div>
       </div>
-      <div class="game-card-overlay"><a href="game.html" class="play-now-btn" style="text-decoration:none;">PLAY NOW</a></div>
+      <div class="game-card-overlay"><a href="hot-devil-bonus.html" class="play-now-btn" style="text-decoration:none;">PLAY NOW</a></div>
       <div class="game-info">
-        <div class="game-name">Bitcoin Blitz</div>
+        <div class="game-name">Hot Devil Bonus 🔥</div>
         <div class="game-meta"><span class="game-rtp">RTP 96.5%</span><span class="game-jp">⚡GC 2M</span></div>
       </div>
     </div><div class="game-card">
@@ -549,7 +549,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
 
 <footer>
   <div class="fl">CAPTAIN CRYPTO SUPER SLOTS</div>
-  <div class="fl-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Responsible Gaming</a><a href="#">Support</a><a href="#">Verify Spin</a></div>
+  <div class="fl-links"><a href="#">Privacy</a><a href="terms-of-service.html">Terms</a><a href="#">Responsible Gaming</a><a href="#">Support</a><a href="#">Verify Spin</a></div>
   <div><div>© 2026 Campione Infrastructure · Land O Lakes, FL</div><div class="fl-chain">⛓ XRPL · Stellar · Chainlink VRF · Lightning Network · RTP 96.5%</div></div>
 </footer>
 
@@ -582,5 +582,27 @@ document.addEventListener("click",function(e){
     m.classList.remove("open");h.textContent="☰";
   }
 });
+</script>
+<script>
+// Wire up balance and avatar from localStorage
+(function(){
+  const user = JSON.parse(localStorage.getItem("cc_user") || "{}");
+  const token = localStorage.getItem("cc_token");
+  // If not logged in, show guest view (no redirect in preview)
+  // Set GC balance
+  if(user.gc !== undefined){
+    const el = document.getElementById("gc-bal");
+    if(el) el.textContent = Number(user.gc).toLocaleString();
+  }
+  // Set avatar initial
+  const av = document.querySelector(".nav-avatar");
+  if(av && user.username) av.textContent = user.username[0].toUpperCase();
+  // Set staking display (15% APY / 365 * balance)
+  if(user.gc !== undefined){
+    const daily = ((user.gc * 0.15) / 365).toFixed(2);
+    const st = document.getElementById("stake-today");
+    if(st) st.textContent = Number(daily).toLocaleString();
+  }
+})();
 </script>
 </body></html>
