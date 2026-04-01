@@ -570,44 +570,43 @@ setInterval(()=>{
 },2100);
 setInterval(()=>{blk+=Math.floor(Math.random()*3+1);document.getElementById("blk").textContent=blk.toLocaleString();},3500);
 setInterval(()=>{stk+=0.00274;document.getElementById("stk-amt").textContent=stk.toFixed(2);document.getElementById("stake-today").textContent=stk.toFixed(2);},100);
-document.querySelectorAll(".ftab").forEach(t=>t.addEventListener("click",function(){document.querySelectorAll(".ftab").forEach(x=>x.classList.remove("on"));this.classList.add("on");});
+document.querySelectorAll(".ftab").forEach(t=>t.addEventListener("click",function(){document.querySelectorAll(".ftab").forEach(x=>x.classList.remove("on"));this.classList.add("on");}));
 </script>
 <script>
 function toggleAvatarMenu(){
   const m=document.getElementById("avatar-menu");
   m.style.display=m.style.display==="none"?"block":"none";
 }
-document.addEventListener("click",function(e){
-  const m=document.getElementById("avatar-menu");
-  const a=document.getElementById("nav-avatar");
-  if(m&&a&&!m.contains(e.target)&&!a.contains(e.target))m.style.display="none";
-});
-function doLogout(){
-  localStorage.removeItem("cc_token");
-  localStorage.removeItem("cc_user");
-  window.location="login.html";
-}
-
+function toggleMobileMenu(){
   const m=document.getElementById("mobile-menu");
   const h=document.getElementById("hamburger");
   if(!m||!h)return;
   m.classList.toggle("open");
   h.textContent=m.classList.contains("open")?"✕":"☰";
 }
+function doLogout(){
+  localStorage.removeItem("cc_token");
+  localStorage.removeItem("cc_user");
+  window.location="login.html";
+}
 document.addEventListener("click",function(e){
-  const m=document.getElementById("mobile-menu");
-  const h=document.getElementById("hamburger");
-  if(m&&h&&m.classList.contains("open")&&!m.contains(e.target)&&!h.contains(e.target)){
-    m.classList.remove("open");h.textContent="☰";
+  const menu=document.getElementById("avatar-menu");
+  const av=document.getElementById("nav-avatar");
+  if(menu&&av&&!menu.contains(e.target)&&!av.contains(e.target))menu.style.display="none";
+  const mm=document.getElementById("mobile-menu");
+  const hh=document.getElementById("hamburger");
+  if(mm&&hh&&mm.classList.contains("open")&&!mm.contains(e.target)&&!hh.contains(e.target)){
+    mm.classList.remove("open");hh.textContent="☰";
   }
 });
 </script>
+
 <script>
 // Wire up balance and avatar from localStorage
 (function(){
   const user = JSON.parse(localStorage.getItem("cc_user") || "{}");
   const token = localStorage.getItem("cc_token");
-  // If not logged in, show guest view (no redirect in preview)
+  // If not logged in, show guest view (no redirect)
   // Set GC balance
   if(user.gc !== undefined){
     const el = document.getElementById("gc-bal");
