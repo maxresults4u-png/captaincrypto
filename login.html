@@ -192,11 +192,46 @@ function togglePwd(id,btn){
   if(i.type==="password"){i.type="text";btn.textContent="🙈";}
   else{i.type="password";btn.textContent="👁";}
 }
-function doLogin(){
-  const e=document.getElementById("login-email").value;
+async function doLogin(){
+  const e=document.getElementById("login-email").value.trim();
   const p=document.getElementById("login-pass").value;
-  if(!e||!p){alert("Please enter your email and password.");return;}
-  window.location="lobby.html";
+  if(!e||!p){showLoginError("Please enter your email and password.");return;}
+
+  const btn=document.querySelector("#login-form .form-btn");
+  const orig=btn.textContent;
+  btn.textContent="SIGNING IN...";
+  btn.disabled=true;
+
+  try{
+    const res=await fetch("https://captaincrypto.campioneinfrastructure.com/api/login",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email:e,password:p})
+    });
+    const data=await res.json();
+    if(res.ok&&data.success){
+      localStorage.setItem("cc_token",data.token||"");
+      localStorage.setItem("cc_user",JSON.stringify(data.user||{}));
+      window.location="lobby.html";
+    } else {
+      btn.textContent=orig;btn.disabled=false;
+      showLoginError(data.error||data.message||"Invalid email or password.");
+    }
+  } catch(err){
+    btn.textContent=orig;btn.disabled=false;
+    showLoginError("Could not reach the server. Check your connection.");
+  }
+}
+
+function showLoginError(msg){
+  let el=document.getElementById("login-error");
+  if(!el){
+    el=document.createElement("div");
+    el.id="login-error";
+    el.style.cssText="background:rgba(255,60,60,.12);border:1px solid rgba(255,60,60,.4);border-radius:8px;padding:12px 16px;font-size:13px;color:#ff8080;margin-top:14px;text-align:center;";
+    document.querySelector("#login-form").appendChild(el);
+  }
+  el.textContent="⚠ "+msg;
 }
 function socialLogin(type){
   if(type==="wallet"){alert("Wallet connect coming soon! Connect XRP, XLM, BTC or ETH wallet.");}
