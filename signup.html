@@ -363,7 +363,7 @@ async function createAccount(){
     });
     const data=await res.json();
 
-    if(res.ok&&data.token){
+    if(res.ok&&data.success){
       localStorage.setItem("cc_token",data.token);
       localStorage.setItem("cc_user",JSON.stringify(data.user));
       window.location="lobby.html";
