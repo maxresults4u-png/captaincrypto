@@ -1,0 +1,18 @@
+
+<head>
+<style>
+<link rel="stylesheet" href="/static/css/styles.css">
+/*  <div class="bg-container">
+  <div class="bg-image"></div>
+  <div class="radiation-glow"></div>
+  <div class="neon-flicker"></div>
+</div> */
+<style>
+/* paste CSS here */
+body {
+  background: black;
+  color: #39FF14;
+}
+</style>
+</style>
+</head>
