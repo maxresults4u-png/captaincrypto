@@ -182,7 +182,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:20px 
       </div>
       <button class="form-btn" onclick="nextStep(1)">CONTINUE →</button>
       <div class="form-divider"><span>OR</span></div>
-      <button class="social-btn" onclick="window.location='lobby.html'">🌐 Sign up with Google</button>
+      <button class="social-btn" onclick="window.location='underconstruction.html'">🌐 Sign up with Google</button>
     </div>
 
     <!-- STEP 2 -->
@@ -366,7 +366,7 @@ async function createAccount(){
     if(res.ok&&data.success){
       localStorage.setItem("cc_token",data.token);
       localStorage.setItem("cc_user",JSON.stringify(data.user));
-      window.location="lobby.html";
+      window.location="underconstruction.html";
     } else {
       btn.textContent=origText;
       btn.disabled=false;
