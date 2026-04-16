@@ -623,4 +623,16 @@ document.addEventListener("click",function(e){
   }
 })();
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Fix all links pointing to hot-devil-bonus
+  document.querySelectorAll('a[href*="hot-devil-bonus"]').forEach(function(a) {
+    a.href = a.href.replace('hot-devil-bonus.html', 'alohagame.html');
+  });
+  // Fix the game name text
+  var all = document.body.innerHTML;
+  all = all.replace(/Hot Devil Bonus/g, 'Aloha Tiki Slots');
+  document.body.innerHTML = all;
+});
+</script>
 </body></html>
