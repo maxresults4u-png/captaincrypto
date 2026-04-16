@@ -1,1 +1,467 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radioactive Rocket — Captain Crypto Super Slots</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a14;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
+}
+
+/* === TOP BAR === */
+.top-bar {
+  background: linear-gradient(180deg, #1a1a2e, #0a0a14);
+  border-bottom: 1px solid #00ff8833;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-bar .logo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  color: #FFD700;
+  text-decoration: none;
+}
+.top-bar .back-btn {
+  background: rgba(0,255,136,0.15);
+  color: #00ff88;
+  border: 1px solid #00ff8844;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.top-bar .back-btn:hover { background: rgba(0,255,136,0.3); }
+.top-bar .game-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0,255,136,0.3);
+}
+
+/* === MAIN LAYOUT === */
+.game-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 260px;
+  gap: 0;
+  min-height: calc(100vh - 50px);
+}
+
+/* === LEFT PANEL — ADS/PROMOS === */
+.left-panel {
+  background: linear-gradient(180deg, #1a1a2e, #12122a);
+  border-right: 1px solid #ffffff10;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
+.promo-header {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #ffffff10;
+}
+.promo-card {
+  background: linear-gradient(145deg, #2d1b69, #1a1a2e);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ffffff10;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.promo-card:hover {
+  border-color: #00ff8844;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,255,136,0.1);
+}
+.promo-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+}
+.promo-card .promo-info {
+  padding: 8px 10px;
+}
+.promo-card .promo-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.promo-card .promo-tag {
+  font-size: 0.7rem;
+  color: #00ff88;
+}
+.promo-card a {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #00ff88, #00cc6a);
+  color: #1a1a2e;
+  padding: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.promo-card a:hover { filter: brightness(1.15); }
+
+/* === CENTER — GAME AREA === */
+.game-center {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.game-center iframe,
+.game-center .game-embed {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* === RIGHT PANEL — BALANCES === */
+.right-panel {
+  background: linear-gradient(180deg, #1a1a2e, #12122a);
+  border-left: 1px solid #ffffff10;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.balance-header {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #ffffff10;
+}
+.balance-box {
+  background: linear-gradient(145deg, #2d1b6922, #1a1a2e);
+  border: 1px solid #ffffff15;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.balance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #ffffff08;
+}
+.balance-row:last-child { border-bottom: none; }
+.balance-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.balance-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+.balance-icon.gc { background: linear-gradient(135deg, #FFD700, #FFA500); color: #1a1a2e; }
+.balance-icon.sc { background: linear-gradient(135deg, #00ff88, #00cc6a); color: #1a1a2e; }
+.balance-icon.xrp { background: linear-gradient(135deg, #23292F, #546E7A); color: #fff; }
+.balance-icon.xlm { background: linear-gradient(135deg, #08B5E5, #0691B7); color: #fff; }
+.balance-icon.btc { background: linear-gradient(135deg, #F7931A, #E8850E); color: #fff; }
+.balance-name {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+.balance-name small {
+  display: block;
+  font-size: 0.65rem;
+  color: #666;
+}
+.balance-amount {
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.balance-amount.gc-val { color: #FFD700; }
+.balance-amount.sc-val { color: #00ff88; }
+.balance-amount.xrp-val { color: #aaa; }
+.balance-amount.xlm-val { color: #08B5E5; }
+.balance-amount.btc-val { color: #F7931A; }
+.balance-amount small {
+  display: block;
+  font-size: 0.65rem;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Action buttons */
+.action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.action-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+}
+.action-btn.buy {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #1a1a2e;
+}
+.action-btn.redeem {
+  background: linear-gradient(135deg, #00ff88, #00cc6a);
+  color: #1a1a2e;
+}
+.action-btn.deposit {
+  background: transparent;
+  border: 1px solid #00ff8844;
+  color: #00ff88;
+}
+.action-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+
+/* Rewards info */
+.rewards-box {
+  background: linear-gradient(145deg, #0a2a1a, #1a1a2e);
+  border: 1px solid #00ff8822;
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: center;
+}
+.rewards-box .rewards-label {
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.rewards-box .rewards-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00ff88;
+  margin: 4px 0;
+}
+.rewards-box .rewards-detail {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+.rewards-box .rewards-detail strong {
+  color: #FFD700;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+  .left-panel {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #ffffff10;
+    padding: 10px;
+  }
+  .promo-card { min-width: 160px; }
+  .game-center { min-height: 400px; }
+  .right-panel {
+    border-left: none;
+    border-top: 1px solid #ffffff10;
+  }
+}
+
+/* === FOOTER === */
+.game-footer {
+  background: #0a0a14;
+  border-top: 1px solid #ffffff10;
+  padding: 8px 20px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #555;
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="../lobby.html" class="back-btn">🎰 Back to Lobby</a>
+  <span class="game-title">☢️ Radioactive Rocket</span>
+  <a href="../index.html" class="logo">Captain Crypto Super Slots</a>
+</div>
+
+<!-- MAIN 3-COLUMN LAYOUT -->
+<div class="game-layout">
+
+  <!-- LEFT PANEL — OTHER GAMES / ADS -->
+  <div class="left-panel">
+    <div class="promo-header">Other Games</div>
+
+    <!-- Aloha Slots Promo -->
+    <div class="promo-card">
+      <img src="../aloha.png" alt="Aloha Slots">
+      <div class="promo-info">
+        <div class="promo-name">🌺 Aloha Slots</div>
+        <div class="promo-tag">RTP 96.8% · Max 2,500x</div>
+      </div>
+      <a href="../aloha-game-folder/index.html">Play Now</a>
+    </div>
+
+    <!-- Coming Soon Promo -->
+    <div class="promo-card">
+      <div style="width:100%;height:110px;background:linear-gradient(135deg,#2d1b69,#1a1a2e);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:2rem;">🎰</span>
+      </div>
+      <div class="promo-info">
+        <div class="promo-name">Game #3</div>
+        <div class="promo-tag">Coming Soon!</div>
+      </div>
+      <a href="#" style="background:#555;color:#aaa;">Coming Soon</a>
+    </div>
+
+    <!-- Buy Coins Promo -->
+    <div class="promo-card">
+      <div style="width:100%;height:110px;background:linear-gradient(135deg,#FFD700,#FFA500);display:flex;align-items:center;justify-content:center;flex-direction:column;">
+        <span style="font-size:2rem;">🪙</span>
+        <span style="font-size:0.8rem;font-weight:bold;color:#1a1a2e;margin-top:4px;">2M FREE GC</span>
+      </div>
+      <div class="promo-info">
+        <div class="promo-name">Welcome Bonus</div>
+        <div class="promo-tag">New Players Only</div>
+      </div>
+      <a href="../coin-store.html">Claim Now</a>
+    </div>
+  </div>
+
+  <!-- CENTER — GAME -->
+  <div class="game-center">
+    <!--
+      OPTION 1: Embed the game directly via iframe
+      Change the src to your actual game file path
+    -->
+    <iframe src="../radioactive-rocket.html" allowfullscreen></iframe>
+
+    <!--
+      OPTION 2: If not using iframe, embed game HTML directly here
+      <div class="game-embed">
+        Game content goes here
+      </div>
+    -->
+  </div>
+
+  <!-- RIGHT PANEL — BALANCES -->
+  <div class="right-panel">
+    <div class="balance-header">Your Balances</div>
+
+    <div class="balance-box">
+      <!-- Gold Coins -->
+      <div class="balance-row">
+        <div class="balance-label">
+          <div class="balance-icon gc">GC</div>
+          <div class="balance-name">Gold Coins<small>Play for fun</small></div>
+        </div>
+        <div class="balance-amount gc-val" id="gc-balance">75,000</div>
+      </div>
+
+      <!-- Sweep Coins (EBIT) -->
+      <div class="balance-row">
+        <div class="balance-label">
+          <div class="balance-icon sc">SC</div>
+          <div class="balance-name">Sweep Coins<small>EBIT Token</small></div>
+        </div>
+        <div class="balance-amount sc-val" id="sc-balance">1,250</div>
+      </div>
+
+      <!-- XRP Equivalent -->
+      <div class="balance-row">
+        <div class="balance-label">
+          <div class="balance-icon xrp">X</div>
+          <div class="balance-name">XRP Value<small>Equivalent</small></div>
+        </div>
+        <div class="balance-amount xrp-val" id="xrp-equiv">
+          12.50
+          <small>@ 0.01 XRP/EBIT</small>
+        </div>
+      </div>
+
+      <!-- XLM Equivalent -->
+      <div class="balance-row">
+        <div class="balance-label">
+          <div class="balance-icon xlm">S</div>
+          <div class="balance-name">XLM Value<small>Equivalent</small></div>
+        </div>
+        <div class="balance-amount xlm-val" id="xlm-equiv">
+          85.00
+          <small>@ 0.068 XLM/EBIT</small>
+        </div>
+      </div>
+
+      <!-- BTC Equivalent -->
+      <div class="balance-row">
+        <div class="balance-label">
+          <div class="balance-icon btc">₿</div>
+          <div class="balance-name">BTC Value<small>Equivalent</small></div>
+        </div>
+        <div class="balance-amount btc-val" id="btc-equiv">
+          0.000018
+          <small>@ sat/EBIT</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rewards Earned Today -->
+    <div class="rewards-box">
+      <div class="rewards-label">Rewards Earned Today</div>
+      <div class="rewards-amount" id="rewards-today">+31.18 GC</div>
+      <div class="rewards-detail">Bonus: <strong>+2.5 SC (EBIT)</strong></div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-btns">
+      <a href="../coin-store.html" class="action-btn buy">🪙 Buy Gold Coins</a>
+      <a href="../redeem.html" class="action-btn redeem">💰 Redeem EBIT</a>
+      <button class="action-btn deposit" onclick="alert('Xaman wallet connect coming soon!')">⛓ Deposit EBIT</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="game-footer">
+  © 2026 Campione Infrastructure · Land O Lakes, FL · MaxResults4U Business Solutions
+  <br>⛓ XRPL · Stellar · Lightning Network · RTP 97.2%
+</div>
+
+</body>
+</html>
