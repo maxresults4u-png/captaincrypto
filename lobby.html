@@ -320,56 +320,137 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
     </div><div class="winner-card">
       <div class="wc-avatar" style="background:linear-gradient(135deg,#006030,#00603088)">ML</div>
       <div><div class="wc-name">MoonLite</div><div class="wc-game">Moon Mission</div><div class="wc-amount">GC 33,000</div></div>
-  <div class="game-card">
-      <div class="game-thumb">
-        <div class="game-thumb-bg" style="padding:0;overflow:hidden;"><img src="radioactive-rocket.png" alt="Radioactive Rocket Slots" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
-        <div class="game-thumb-glow"></div>
-        <div class="badge-hot">HOT 🔥</div><div class="badge-jp">JACKPOT</div>
-        <div class="badge-fair">⛓ FAIR</div>
-      </div>
-      <div class="game-card-overlay"><a href="game.html" class="play-now-btn" style="text-decoration:none;">PLAY NOW</a></div>
-      <div class="game-info">
-        <div class="game-name">Radioactive Rocket 🔥</div>
-        <div class="game-meta"><span class="game-rtp">RTP 96.5%</span><span class="game-jp">⚡GC 2M</span></div>
-      </div>
-    </div><div class="game-card">
-      <div class="game-thumb">
-        <div class="game-thumb-bg"><div class="game-thumb-icon" style="color:#FFD700">7</div></div>
-        <div class="game-thumb-glow"></div>
-        <div class="badge-hot">HOT 🔥</div>
-        <div class="badge-fair">⛓ FAIR</div>
-      </div>
-      <div class="game-card-overlay"><a href="game.html" class="play-now-btn" style="text-decoration:none;">PLAY NOW</a></div>
-      <div class="game-info">
-        <div class="game-name">Aloha Slots</div>
-        <div class="game-meta"><span class="game-rtp">RTP 96.8%</span><span class="game-jp">⚡GC 150K</span></div>
-      </div>
-    </div><div class="game-card">
-      <div class="game-thumb">
-        <div class="game-thumb-bg"><div class="game-thumb-icon" style="color:#627EEA">Ξ</div></div>
-        <div class="game-thumb-glow"></div>
-        <div class="badge-new">NEW</div>
-        <div class="badge-fair">⛓ FAIR</div>
-      </div>
-      <div class="game-card-overlay"><a href="game.html" class="play-now-btn" style="text-decoration:none;">PLAY NOW</a></div>
-      <div class="game-info">
-        <div class="game-name">Ethereum Empire</div>
-        <div class="game-meta"><span class="game-rtp">RTP 96.2%</span><span class="game-jp">⚡GC 50K</span></div>
-      </div>
-    </div><div class="game-card">
-      <div class="game-thumb">
-        <div class="game-thumb-bg"><div class="game-thumb-icon" style="color:#A855F7">✦</div></div>
-        <div class="game-thumb-glow"></div>
+  <!-- GAME PREVIEW SECTION - REPLACE YOUR BROKEN SECTION WITH THIS -->
+<section class="games-section" style="padding: 2rem; background: linear-gradient(135deg, #1a1a2e, #16213e); margin-top: 2rem;">
+    <h2 style="color: #00ff88; text-align: center; font-size: 2.5rem; margin-bottom: 2rem; text-shadow: 0 0 10px #00ff88;">
+        🎰 Featured Games
+    </h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
         
-        <div class="badge-fair">⛓ FAIR</div>
-      </div>
-      <div class="game-card-overlay"><a href="game.html" class="play-now-btn" style="text-decoration:none;">PLAY NOW</a></div>
-      <div class="game-info">
-        <div class="game-name">Stellar Gold</div>
-        <div class="game-meta"><span class="game-rtp">RTP 95.9%</span><span class="game-jp">⚡GC 15K</span></div>
-      </div>
+        <!-- ALOHA SLOTS GAME CARD -->
+        <div class="game-card" onclick="playGame('aloha-slots')" style="background: linear-gradient(145deg, #2d1b69, #1a1a2e); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2); transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent;">
+            
+            <div style="position: relative; height: 200px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); display: flex; align-items: center; justify-content: center;">
+                <!-- Game Preview Background -->
+                <div style="position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23ff6b6b%22 width=%22400%22 height=%22200%22/><circle fill=%22%234ecdc4%22 cx=%22100%22 cy=%22100%22 r=%2250%22 opacity=%220.7%22/><text x=%22200%22 y=%22110%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-weight=%22bold%22>🌺 ALOHA 🌺</text></svg>') center/cover;"></div>
+                
+                <!-- User Avatar Overlay -->
+                <div style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border-radius: 50%; background: #00ff88; display: flex; align-items: center; justify-content: center; border: 2px solid white; font-weight: bold;">
+                    KC
+                </div>
+                
+                <!-- Game Stats -->
+                <div style="position: absolute; bottom: 10px; left: 10px; display: flex; gap: 10px;">
+                    <span style="background: rgba(0,0,0,0.7); color: #00ff88; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">RTP: 96.8%</span>
+                    <span style="background: rgba(0,0,0,0.7); color: #ffa500; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Max: 2500x</span>
+                </div>
+            </div>
+            
+            <div style="padding: 1.5rem; text-align: center;">
+                <h3 style="color: #00ff88; font-size: 1.5rem; margin: 0 0 0.5rem 0; text-shadow: 0 0 5px #00ff88;">🌺 Aloha Slots</h3>
+                <p style="color: #b8b8b8; margin: 0 0 1rem 0; line-height: 1.4;">Tropical paradise gaming with hibiscus flowers and tiki masks!</p>
+                <button style="background: linear-gradient(45deg, #00ff88, #00cc6a); color: #1a1a2e; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase;">
+                    🎮 SPIN & WIN!
+                </button>
+            </div>
+        </div>
+        
+        <!-- RADIOACTIVE ROCKET GAME CARD -->
+        <div class="game-card" onclick="playGame('radioactive-rocket')" style="background: linear-gradient(145deg, #2d1b69, #1a1a2e); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(255, 165, 0, 0.2); transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent;">
+            
+            <div style="position: relative; height: 200px; background: linear-gradient(45deg, #ff4757, #2f3542); display: flex; align-items: center; justify-content: center;">
+                <!-- Game Preview Background -->
+                <div style="position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23ff4757%22 width=%22400%22 height=%22200%22/><circle fill=%22%23ffa502%22 cx=%22300%22 cy=%2250%22 r=%2230%22 opacity=%220.8%22/><text x=%22200%22 y=%22110%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22 font-weight=%22bold%22>☢️ ROCKET ☢️</text></svg>') center/cover;"></div>
+                
+                <!-- User Avatar Overlay -->
+                <div style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border-radius: 50%; background: #ffa500; display: flex; align-items: center; justify-content: center; border: 2px solid white; font-weight: bold; color: black;">
+                    KC
+                </div>
+                
+                <!-- Game Stats -->
+                <div style="position: absolute; bottom: 10px; left: 10px; display: flex; gap: 10px;">
+                    <span style="background: rgba(0,0,0,0.7); color: #00ff88; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">RTP: 97.2%</span>
+                    <span style="background: rgba(0,0,0,0.7); color: #ff4757; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Max: 5000x</span>
+                </div>
+            </div>
+            
+            <div style="padding: 1.5rem; text-align: center;">
+                <h3 style="color: #ffa500; font-size: 1.5rem; margin: 0 0 0.5rem 0; text-shadow: 0 0 5px #ffa500;">☢️ Radioactive Rocket</h3>
+                <p style="color: #b8b8b8; margin: 0 0 1rem 0; line-height: 1.4;">Post-apocalyptic crypto adventure with Bitcoin robots!</p>
+                <button style="background: linear-gradient(45deg, #ffa500, #ff7675); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase;">
+                    🚀 LAUNCH GAME!
+                </button>
+            </div>
+        </div>
+        
+        <!-- COMING SOON PLACEHOLDER -->
+        <div style="background: linear-gradient(145deg, #2d1b69, #1a1a2e); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1); border: 2px dashed #555;">
+            
+            <div style="position: relative; height: 200px; background: linear-gradient(45deg, #555, #333); display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center; color: #888;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎰</div>
+                    <div style="font-size: 1.2rem; font-weight: bold;">GAME #3</div>
+                    <div style="font-size: 0.9rem;">Coming Soon</div>
+                </div>
+            </div>
+            
+            <div style="padding: 1.5rem; text-align: center;">
+                <h3 style="color: #888; font-size: 1.5rem; margin: 0 0 0.5rem 0;">🎰 Mystery Slots</h3>
+                <p style="color: #666; margin: 0 0 1rem 0; line-height: 1.4;">Your next amazing game is in development!</p>
+                <button disabled style="background: #444; color: #666; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; text-transform: uppercase;">
+                    Coming Soon
+                </button>
+            </div>
+        </div>
+        
     </div>
+    
+    <!-- PROGRESS BAR -->
+    <div style="margin-top: 2rem; text-align: center;">
+        <div style="color: #b8b8b8; margin-bottom: 1rem;">
+            <strong style="color: #00ff88;">2</strong> Live Games • 
+            <strong style="color: #FFA500;">98</strong> More Coming Soon!
+        </div>
+        <div style="background: #333; height: 8px; border-radius: 4px; max-width: 400px; margin: 0 auto;">
+            <div style="background: linear-gradient(90deg, #00ff88, #00cc6a); height: 100%; width: 2%; border-radius: 4px; transition: width 0.3s ease;"></div>
+        </div>
     </div>
+</section>
+
+<script>
+function playGame(gameId) {
+    if (gameId === 'aloha-slots') {
+        // Replace this with your actual Aloha Slots URL
+        alert('🌺 Launching Aloha Slots! 🌺');
+        // window.location.href = '/games/aloha-slots/';
+    } else if (gameId === 'radioactive-rocket') {
+        // Replace this with your actual Radioactive Rocket URL
+        alert('🚀 Launching Radioactive Rocket! ☢️');
+        // window.location.href = '/games/radioactive-rocket/';
+    }
+}
+
+// Add hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach(card => {
+        if (card.onclick) { // Only for clickable cards
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 255, 136, 0.3)';
+                this.style.borderColor = '#00ff88';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 255, 136, 0.2)';
+                this.style.borderColor = 'transparent';
+            });
+        }
+    });
+});
+</script>
 
     <!-- SEARCH + ALL GAMES -->
     <div class="game-header">
