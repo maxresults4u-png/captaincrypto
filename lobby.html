@@ -706,4 +706,178 @@ document.addEventListener('DOMContentLoaded', function() {
   document.body.innerHTML = all;
 });
 </script>
+  <!--
+  GAME CARD IMAGE PATCH
+  =====================
+  Add this entire block right BEFORE the closing </body> tag in your lobby.html
+  
+  It finds the placeholder game cards and replaces them with your real games
+  featuring actual preview images.
+-->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // === CONFIG: Your real games ===
+  var realGames = [
+    {
+      oldName: 'Hot Devil Bonus',
+      newName: 'Aloha Slots',
+      image: 'aloha.png',
+      link: 'aloha-game-folder/index.html',
+      rtp: '96.8%',
+      jackpot: 'GC 2M',
+      icon: '🌺',
+      tags: ['HOT 🔥', 'JACKPOT', '⛓ FAIR']
+    },
+    {
+      oldName: 'Lucky 7 Crypto',
+      newName: 'Radioactive Rocket',
+      image: 'radioactive-rocket.png',
+      link: 'radioactive-rocket.html',
+      rtp: '97.2%',
+      jackpot: 'GC 150K',
+      icon: '☢️',
+      tags: ['HOT 🔥', '⛓ FAIR']
+    }
+  ];
+
+  // Find ALL game name elements on the page
+  var allElements = document.querySelectorAll('*');
+  
+  realGames.forEach(function(game) {
+    // Find every element that contains the old game name
+    allElements.forEach(function(el) {
+      // Match the game name text (direct text content, not children)
+      if (el.childNodes.length > 0) {
+        for (var i = 0; i < el.childNodes.length; i++) {
+          var node = el.childNodes[i];
+          if (node.nodeType === 3 && node.textContent.trim() === game.oldName) {
+            // Found the name — now replace it
+            node.textContent = game.newName;
+          }
+          if (node.nodeType === 3 && node.textContent.indexOf(game.oldName) > -1) {
+            node.textContent = node.textContent.replace(game.oldName, game.newName);
+          }
+        }
+      }
+    });
+
+    // Now find the card container by searching for the new name
+    var nameEls = [];
+    document.querySelectorAll('*').forEach(function(el) {
+      if (el.textContent.trim().indexOf(game.newName) > -1 && 
+          el.children.length < 5 &&
+          el.textContent.trim().length < 80) {
+        nameEls.push(el);
+      }
+    });
+
+    nameEls.forEach(function(nameEl) {
+      // Walk up to find the card container (look for the clickable card or link wrapper)
+      var card = nameEl;
+      for (var depth = 0; depth < 8; depth++) {
+        if (!card.parentElement) break;
+        card = card.parentElement;
+        
+        // Look for the icon/emoji area inside this card
+        var spans = card.querySelectorAll('span, div');
+        for (var s = 0; s < spans.length; s++) {
+          var span = spans[s];
+          var text = span.textContent.trim();
+          // Replace single-character emoji icons with an image
+          if (text.length <= 3 && span.children.length === 0 && 
+              span.offsetHeight > 30 && span.offsetWidth > 30) {
+            // This is likely the big emoji icon — replace with image
+            span.innerHTML = '<img src="' + game.image + '" alt="' + game.newName + '" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">';
+            span.style.fontSize = '0';
+            span.style.padding = '0';
+            span.style.display = 'flex';
+            span.style.alignItems = 'center';
+            span.style.justifyContent = 'center';
+            span.style.overflow = 'hidden';
+            break; // Only replace the first match per card
+          }
+        }
+      }
+    });
+
+    // Update PLAY NOW links to point to the real game
+    var links = document.querySelectorAll('a');
+    links.forEach(function(a) {
+      // Find links that are near our game name and point to game.html
+      if (a.href && a.href.indexOf('game.html') > -1) {
+        var parent = a.parentElement;
+        for (var d = 0; d < 6; d++) {
+          if (!parent) break;
+          if (parent.textContent.indexOf(game.newName) > -1) {
+            a.href = game.link;
+            break;
+          }
+          parent = parent.parentElement;
+        }
+      }
+      // Also update the hot-devil-bonus link for Aloha
+      if (game.oldName === 'Hot Devil Bonus' && a.href && a.href.indexOf('hot-devil-bonus') > -1) {
+        a.href = game.link;
+      }
+    });
+  });
+
+  // === BETTER APPROACH: Direct image injection into card backgrounds ===
+  // Find all game card image/icon containers and inject images for our real games
+  
+  function injectGameImages() {
+    var cards = document.querySelectorAll('[class*="game"], [class*="card"], [class*="slot"]');
+    
+    // If no class-based cards found, try a broader search
+    if (cards.length === 0) {
+      // Look for divs that contain PLAY NOW buttons
+      var playBtns = document.querySelectorAll('a');
+      playBtns.forEach(function(btn) {
+        if (btn.textContent.trim() === 'PLAY NOW') {
+          var card = btn;
+          for (var i = 0; i < 8; i++) {
+            if (!card.parentElement) break;
+            card = card.parentElement;
+          }
+          // Check if this card contains one of our game names
+          var cardText = card.textContent;
+          realGames.forEach(function(game) {
+            if (cardText.indexOf(game.newName) > -1) {
+              // Find the icon/image area - usually the first large div
+              var divs = card.querySelectorAll('div');
+              for (var d = 0; d < divs.length; d++) {
+                var div = divs[d];
+                if (div.offsetHeight >= 80 && div.offsetWidth >= 80 && div.children.length <= 3) {
+                  // Check if this div has a big emoji or is the icon container
+                  var style = window.getComputedStyle(div);
+                  if (style.display === 'flex' || style.fontSize.replace('px','') > 30) {
+                    div.style.backgroundImage = 'url(' + game.image + ')';
+                    div.style.backgroundSize = 'cover';
+                    div.style.backgroundPosition = 'center';
+                    // Hide the emoji text
+                    var innerSpans = div.querySelectorAll('span');
+                    innerSpans.forEach(function(sp) {
+                      if (sp.textContent.trim().length <= 3 && sp.children.length === 0) {
+                        sp.style.opacity = '0';
+                      }
+                    });
+                    break;
+                  }
+                }
+              }
+            }
+          });
+        }
+      });
+    }
+  }
+  
+  // Run after a short delay to ensure all styles are applied
+  setTimeout(injectGameImages, 500);
+
+  console.log('✅ Game card patch applied: Aloha Slots + Radioactive Rocket');
+});
+</script>      
 </body></html>
