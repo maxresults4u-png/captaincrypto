@@ -1,34 +1,127 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <style type = "text/css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Most Wanted — Captain Crypto Super Slots</title>
+        <style type="text/css">
             body{
-                background-image: url("png/Background_1.png"); /* The image used */
-                background-color: #cccccc; /* Used if the image is unavailable */  /* background: #a3a3a3; */
-                background-position: center; /* Center the image */
-                background-repeat: no-repeat; /* Do not repeat the image */
-                background-size: cover; /* Resize the background image to cover the entire container */
+                background-image: url("png/Background_1.png");
+                background-color: #cccccc;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
                 padding: 0px;
                 margin: 0px;
             }
             canvas{
-                display:block;
+                display: block;
                 margin: 0;
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
+            /* Intro splash overlay */
+            #intro-splash {
+                position: fixed;
+                inset: 0;
+                background: #000;
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: opacity 0.6s ease;
+            }
+            #intro-splash.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+            #intro-video {
+                max-width: 100%;
+                max-height: 100vh;
+                object-fit: contain;
+            }
+            #intro-skip {
+                position: absolute;
+                bottom: 24px;
+                right: 24px;
+                padding: 10px 20px;
+                background: rgba(0,0,0,0.6);
+                color: #fff;
+                border: 1px solid #fff;
+                border-radius: 6px;
+                font-family: sans-serif;
+                font-size: 14px;
+                cursor: pointer;
+                z-index: 10000;
+            }
+            #intro-skip:hover { background: rgba(255,255,255,0.15); }
         </style>
-        <script src = "js/phaser.js"></script>      
+        <script src="js/phaser.js"></script>
     </head>
-	<body>
-            <!-- remove or comment unused configs before publish --> 
-        <script src = "js/slotConfig3x5.js"></script>                
-        <script src = "js/mkutils.js"></script>
-        <script src = "js/popups.js"></script>
-        <script src = "js/state_machine.js"></script>
-        <script src = "js/slot_classes.js"></script>
-	    <script src = "js/slotGame.js"></script>
-	</body>
+    <body>
+        <!-- Intro splash: plays once per browser session -->
+        <div id="intro-splash">
+            <video id="intro-video" muted playsinline preload="auto">
+                <source src="preview.mp4" type="video/mp4">
+            </video>
+            <button id="intro-skip">Skip ▶</button>
+        </div>
+
+        <script>
+        (function() {
+            var splash = document.getElementById('intro-splash');
+            var video = document.getElementById('intro-video');
+            var skip = document.getElementById('intro-skip');
+            var gameLoaded = false;
+
+            // Once per session — skip on reload within same tab
+            if (sessionStorage.getItem('cowboyslot_intro_seen') === '1') {
+                splash.style.display = 'none';
+                loadGame();
+                return;
+            }
+
+            function dismiss() {
+                sessionStorage.setItem('cowboyslot_intro_seen', '1');
+                splash.classList.add('hidden');
+                setTimeout(function(){ splash.style.display = 'none'; }, 600);
+                loadGame();
+            }
+
+            video.addEventListener('ended', dismiss);
+            skip.addEventListener('click', dismiss);
+
+            // Fallback: if video never starts, dismiss after 6s
+            var timeout = setTimeout(dismiss, 6000);
+            video.addEventListener('playing', function(){ clearTimeout(timeout); });
+            video.addEventListener('error', dismiss);
+
+            // Muted autoplay (required by browsers)
+            video.play().catch(dismiss);
+
+            function loadGame() {
+                if (gameLoaded) return;
+                gameLoaded = true;
+                var scripts = [
+                    'js/slotConfig3x5.js',
+                    'js/mkutils.js',
+                    'js/popups.js',
+                    'js/state_machine.js',
+                    'js/slot_classes.js',
+                    'js/slotGame.js'
+                ];
+                (function next(i){
+                    if (i >= scripts.length) return;
+                    var s = document.createElement('script');
+                    s.src = scripts[i];
+                    s.onload = function(){ next(i+1); };
+                    s.onerror = function(){ console.error('Failed to load', scripts[i]); next(i+1); };
+                    document.body.appendChild(s);
+                })(0);
+            }
+        })();
+        </script>
+    </body>
 </html>
