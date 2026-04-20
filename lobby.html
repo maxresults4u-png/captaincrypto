@@ -428,15 +428,29 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
 </div>
 
     <!-- GAME #4 — Pharaoh's Fortune -->
-    <div style="background:linear-gradient(145deg,#1a1400,#2a2000);border-radius:15px;overflow:hidden;box-shadow:0 8px 30px rgba(255,255,255,0.03);border:2px dashed rgba(255,215,0,0.2);cursor:default;">
-      <div style="width:100%;height:180px;background:linear-gradient(135deg,#1a1400,#3d2e00);display:flex;align-items:center;justify-content:center;flex-direction:column;">
-        <span style="font-size:3.5rem;opacity:0.7">🏺</span>
-        <span style="color:#666;font-size:0.75rem;font-family:'Rajdhani',sans-serif;margin-top:6px;font-weight:700;letter-spacing:2px;">EGYPTIAN</span>
+    <div style="background:linear-gradient(145deg,#1a1400,#2a2000);border-radius:15px;overflow:hidden;box-shadow:0 8px 30px rgba(255,215,0,0.1);border:2px dashed rgba(255,215,0,0.3);cursor:default;">
+      <div style="width:100%;height:180px;position:relative;overflow:hidden;background:#120800;">
+        <video
+          src="pharaohs-fortune-preview.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          style="width:100%;height:100%;object-fit:cover;display:block;">
+        </video>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.12));pointer-events:none;"></div>
+        <span style="position:absolute;left:12px;bottom:12px;color:#FFD700;font-size:0.75rem;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:2px;text-shadow:0 2px 10px rgba(0,0,0,0.65);">
+          EGYPTIAN
+        </span>
+        <div style="position:absolute;top:10px;right:10px;background:rgba(255,215,0,0.15);border:1px solid #FFD700;border-radius:20px;padding:3px 10px;font-size:10px;color:#FFD700;font-family:'Rajdhani',sans-serif;font-weight:700;backdrop-filter:blur(4px);">
+          SOON
+        </div>
       </div>
       <div style="padding:1rem 1.2rem;">
-        <h3 style="color:#888;font-size:1.2rem;margin:0 0 0.3rem;font-family:'Cinzel',serif;">Pharaoh's Fortune</h3>
-        <p style="color:#555;margin:0 0 0.8rem;font-size:0.8rem;font-family:'Rajdhani',sans-serif;">Tombs, scarabs & ancient riches</p>
-        <div style="display:flex;justify-content:flex-end;"><span style="background:#222;color:#555;padding:8px 16px;border-radius:20px;font-size:0.8rem;font-family:'Rajdhani',sans-serif;font-weight:700;">Coming Soon</span></div>
+        <h3 style="color:#FFD700;font-size:1.2rem;margin:0 0 0.3rem;font-family:'Cinzel',serif;">Pharaoh's Fortune</h3>
+        <p style="color:#aaa;margin:0 0 0.8rem;font-size:0.8rem;font-family:'Rajdhani',sans-serif;">Tombs, scarabs & ancient riches</p>
+        <div style="display:flex;justify-content:flex-end;"><span style="background:#222;color:#888;padding:8px 16px;border-radius:20px;font-size:0.8rem;font-family:'Rajdhani',sans-serif;font-weight:700;">Coming Soon</span></div>
       </div>
     </div>
 
