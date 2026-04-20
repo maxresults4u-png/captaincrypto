@@ -40,8 +40,8 @@ body{background:var(--deep);color:#fff;font-family:"Rajdhani",sans-serif;min-hei
 .bal-item .bl{font-size:9px;color:#778;letter-spacing:1.5px;text-transform:uppercase;}
 .bal-item .bv{font-family:"Orbitron",monospace;font-size:13px;font-weight:700;color:#fff;}
 .bal-item .bv em{font-style:normal;font-size:10px;color:var(--gold);margin-right:2px;}
-.bal-staking{border-color:rgba(0,255,100,.25);}
-.bal-staking .bv{color:#0f8;}
+.bal-rewards{border-color:rgba(0,255,100,.25);}
+.bal-rewards .bv{color:#0f8;}
 .nav-btn{border-radius:7px;padding:7px 14px;font-family:"Cinzel",serif;font-size:11px;font-weight:700;letter-spacing:1.5px;cursor:pointer;text-decoration:none;white-space:nowrap;border:none;}
 .btn-buy{background:linear-gradient(135deg,#8B0000,#cc0000);color:#fff;box-shadow:0 2px 12px rgba(200,0,0,.3);}
 .btn-buy:hover{background:linear-gradient(135deg,#cc0000,#ff2222);}
@@ -155,15 +155,15 @@ body{background:var(--deep);color:#fff;font-family:"Rajdhani",sans-serif;min-hei
 .sec-all:hover{color:var(--gold);}
 .sec-all:hover{color:var(--gold);}
 
-/* STAKING WIDGET */
-.staking-widget{background:linear-gradient(135deg,rgba(0,255,100,.06),rgba(0,180,80,.03));border:1px solid rgba(0,255,100,.2);border-radius:12px;padding:16px 18px;margin-bottom:22px;display:flex;align-items:center;gap:20px;}
+/* REWARDS WIDGET */
+.rewards-widget{background:linear-gradient(135deg,rgba(0,255,100,.06),rgba(0,180,80,.03));border:1px solid rgba(0,255,100,.2);border-radius:12px;padding:16px 18px;margin-bottom:22px;display:flex;align-items:center;gap:20px;}
 .sw-icon{font-size:32px;}
 .sw-text{flex:1;}
-.sw-title{font-family:"Cinzel",serif;font-size:14px;font-weight:700;color:#0f8;margin-bottom:3px;}
-.sw-sub{font-size:13px;color:#aaa;font-weight:600;}
-.sw-amount{text-align:right;}
-.sw-earned{font-family:"Cinzel Decorative",serif;font-size:22px;font-weight:900;color:#0f8;text-shadow:0 0 12px rgba(0,255,100,.4);}
-.sw-label{font-size:10px;color:#556;margin-top:2px;letter-spacing:1px;}
+.rw-title{font-family:"Cinzel",serif;font-size:14px;font-weight:700;color:#0f8;margin-bottom:3px;}
+.rw-sub{font-size:13px;color:#aaa;font-weight:600;}
+.rw-amount{text-align:right;}
+.rw-earned{font-family:"Cinzel Decorative",serif;font-size:22px;font-weight:900;color:#0f8;text-shadow:0 0 12px rgba(0,255,100,.4);}
+.rw-label{font-size:10px;color:#556;margin-top:2px;letter-spacing:1px;}
 
 /* FOOTER */
 footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:11px;color:#334;}
@@ -199,7 +199,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
   <div class="nav-spacer"></div>
   <div class="nav-balance">
     <div class="bal-item"><div class="bl">Gold Coins</div><div class="bv"><em>GC</em><span id="gc-bal">75,000</span></div></div>
-    <div class="bal-item bal-staking"><div class="bl">Staking Today</div><div class="bv">+<span id="stake-today">31.18</span> GC</div></div>
+    <div class="bal-item bal-rewards"><div class="bl">Rewards Today</div><div class="bv">+<span id="rewards-today">31.18</span> GC</div></div>
   </div>
   <a href="coin-store.html" class="nav-btn btn-buy">BUY GC</a>
   <a href="redeem.html" class="nav-btn btn-redeem">REDEEM</a>
@@ -249,7 +249,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
       <div class="sb-head">My Account</div>
       <a href="#" class="sb-item"><span class="sb-ico">🕐</span><span class="sb-label">Recently Played</span></a>
       <a href="#" class="sb-item"><span class="sb-ico">❤️</span><span class="sb-label">Favourites</span></a>
-      <a href="redeem.html" class="sb-item"><span class="sb-ico">📈</span><span class="sb-label">Staking Rewards</span></a>
+      <a href="redeem.html" class="sb-item"><span class="sb-ico">📈</span><span class="sb-label">Daily Rewards</span></a>
     </div>
     <div class="sb-section">
       <div class="sb-head">Network</div>
@@ -268,7 +268,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
         <div class="promo-text">
           <div class="pt-label">🎁 WELCOME BONUS — NEW PLAYERS</div>
           <div class="pt-title">2,000,000 FREE<br>GOLD COINS</div>
-          <div class="pt-sub">Plus your balance earns 15% APY staking from day one</div>
+          <div class="pt-sub">Plus your balance earns 15% Daily Rewards rewards from day one</div>
           <div class="promo-cta">
             <a href="coin-store.html" class="pbtn pbtn-red">CLAIM NOW</a>
             <a href="promotions.html" class="pbtn pbtn-gold">VIEW ALL PROMOS</a>
@@ -276,22 +276,22 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.08);padding:24px 
         </div>
         <div class="promo-stats">
           <div class="ps-stat"><div class="sv">⚡&lt;5s</div><div class="sl">Payout Speed</div></div>
-          <div class="ps-stat"><div class="sv">15%</div><div class="sl">Staking APY</div></div>
+          <div class="ps-stat"><div class="sv">15%</div><div class="sl">Daily Rewards</div></div>
           <div class="ps-stat"><div class="sv">⛓ Fair</div><div class="sl">Every Spin</div></div>
         </div>
       </div>
     </div>
 
-    <!-- STAKING WIDGET -->
-    <div class="staking-widget">
+    <!-- REWARDS WIDGET -->
+    <div class="rewards-widget">
       <div class="sw-icon">📈</div>
       <div class="sw-text">
-        <div class="sw-title">Your Staking Rewards Are Growing</div>
-        <div class="sw-sub">GC 75,000 balance earning 15% APY · Auto-compounding daily · No lock-up period</div>
+        <div class="rw-title">Your Your Rewards Are Growing</div>
+        <div class="rw-sub">GC 75,000 balance earning 15% Daily Rewards · Auto-compounding daily · No lock-up period</div>
       </div>
-      <div class="sw-amount">
-        <div class="sw-earned">+<span id="stk-amt">31.18</span> GC</div>
-        <div class="sw-label">EARNED TODAY</div>
+      <div class="rw-amount">
+        <div class="rw-earned">+<span id="stk-amt">31.18</span> GC</div>
+        <div class="rw-label">EARNED TODAY</div>
       </div>
     </div>
 
@@ -713,7 +713,7 @@ setInterval(()=>{
   document.getElementById("jt-mn").textContent="GC "+fmt(jp.mn);
 },2100);
 setInterval(()=>{blk+=Math.floor(Math.random()*3+1);document.getElementById("blk").textContent=blk.toLocaleString();},3500);
-setInterval(()=>{stk+=0.00274;document.getElementById("stk-amt").textContent=stk.toFixed(2);document.getElementById("stake-today").textContent=stk.toFixed(2);},100);
+setInterval(()=>{stk+=0.00274;document.getElementById("stk-amt").textContent=stk.toFixed(2);document.getElementById("rewards-today").textContent=stk.toFixed(2);},100);
 document.querySelectorAll(".ftab").forEach(t=>t.addEventListener("click",function(){document.querySelectorAll(".ftab").forEach(x=>x.classList.remove("on"));this.classList.add("on");}));
 </script>
 <script>
@@ -759,10 +759,10 @@ document.addEventListener("click",function(e){
   // Set avatar initial
   const av = document.querySelector(".nav-avatar");
   if(av && user.username) av.textContent = user.username[0].toUpperCase();
-  // Set staking display (15% APY / 365 * balance)
+  // Set rewards display (15% Daily Rewards / 365 * balance)
   if(user.gc !== undefined){
     const daily = ((user.gc * 0.15) / 365).toFixed(2);
-    const st = document.getElementById("stake-today");
+    const st = document.getElementById("rewards-today");
     if(st) st.textContent = Number(daily).toLocaleString();
   }
 })();

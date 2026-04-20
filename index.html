@@ -35,8 +35,8 @@ h1 span{display:block;font-size:.52em;letter-spacing:4px;color:#ccc;-webkit-text
 .stat-pill-text .big em{font-style:normal;color:var(--gold);}
 .stat-pill-text .small{font-size:12px;color:#778;letter-spacing:1px;margin-top:2px;}
 .sp-lightning{border-color:rgba(255,220,0,.25);background:rgba(255,215,0,.04);}
-.sp-staking  {border-color:rgba(0,255,100,.2); background:rgba(0,255,100,.04);}
-.sp-staking .big em{color:#0f8;}
+.sp-rewards  {border-color:rgba(0,255,100,.2); background:rgba(0,255,100,.04);}
+.sp-rewards .big em{color:#0f8;}
 
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
 .btn-primary{background:linear-gradient(135deg,#7a0000,#cc0000 45%,#ff3333 55%,#cc0000);border:none;border-radius:10px;padding:16px 36px;font-family:"Cinzel",serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:3px;cursor:pointer;transition:all .2s;box-shadow:0 4px 24px rgba(200,0,0,.4);text-decoration:none;display:inline-block;}
@@ -61,7 +61,7 @@ h1 span{display:block;font-size:.52em;letter-spacing:4px;color:#ccc;-webkit-text
 .kb-text .kb-sub{font-size:14px;color:#889;line-height:1.55;max-width:380px;}
 .kb-text .kb-sub strong{color:#fff;}
 .kb-lightning .kb-big{background:linear-gradient(90deg,#FFD700,#FF8C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.kb-staking .kb-big{background:linear-gradient(90deg,#0f8,#4af);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.kb-rewards .kb-big{background:linear-gradient(90deg,#0f8,#4af);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
 /* JACKPOT BAR */
 .jp-bar{background:linear-gradient(90deg,#0d0820,#1a0840,#0d0820);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
@@ -90,17 +90,17 @@ h1 span{display:block;font-size:.52em;letter-spacing:4px;color:#ccc;-webkit-text
 .feat-desc{color:#889;font-size:13px;line-height:1.65;}
 
 /* STAKING SECTION */
-.staking{padding:80px 5%;background:radial-gradient(ellipse 70% 60% at 50% 50%,#031a0a 0%,var(--deep) 65%);}
-.staking-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
-.staking-text h2{font-family:"Cinzel Decorative",serif;font-size:clamp(22px,3vw,38px);font-weight:900;background:linear-gradient(90deg,#0f8,#4af,#0f8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
-.staking-text p{color:#aaa;font-size:15px;line-height:1.7;margin-bottom:14px;}
-.staking-text p strong{color:#fff;}
-.staking-stat{background:rgba(0,255,100,.06);border:1px solid rgba(0,255,100,.2);border-radius:12px;padding:20px 24px;margin-top:24px;display:flex;align-items:center;gap:18px;}
+.rewards{padding:80px 5%;background:radial-gradient(ellipse 70% 60% at 50% 50%,#031a0a 0%,var(--deep) 65%);}
+.rewards-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.rewards-text h2{font-family:"Cinzel Decorative",serif;font-size:clamp(22px,3vw,38px);font-weight:900;background:linear-gradient(90deg,#0f8,#4af,#0f8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.rewards-text p{color:#aaa;font-size:15px;line-height:1.7;margin-bottom:14px;}
+.rewards-text p strong{color:#fff;}
+.rewards-stat{background:rgba(0,255,100,.06);border:1px solid rgba(0,255,100,.2);border-radius:12px;padding:20px 24px;margin-top:24px;display:flex;align-items:center;gap:18px;}
 .ss-val{font-family:"Cinzel Decorative",serif;font-size:40px;font-weight:900;color:#0f8;text-shadow:0 0 20px rgba(0,255,100,.4);}
 .ss-text .ss-big{font-size:15px;font-weight:700;color:#fff;}
 .ss-text .ss-small{font-size:12px;color:#0a8;margin-top:3px;}
-.staking-cards{display:grid;gap:14px;}
-.staking-card{background:rgba(255,255,255,.04);border:1px solid rgba(0,255,100,.12);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:16px;}
+.rewards-cards{display:grid;gap:14px;}
+.rewards-card{background:rgba(255,255,255,.04);border:1px solid rgba(0,255,100,.12);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:16px;}
 .sc-icon{font-size:28px;}
 .sc-text .sc-title{font-family:"Cinzel",serif;font-size:14px;font-weight:700;color:#0f8;margin-bottom:4px;}
 .sc-text .sc-desc{font-size:13px;color:#778;}
@@ -170,7 +170,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
   .stat-pill{text-align:left;}
   .key-band{grid-template-columns:1fr;}
   .kb-item:first-child{border-right:none;border-bottom:1px solid rgba(255,215,0,.1);}
-  .staking-inner,.ps-inner{grid-template-columns:1fr;}
+  .rewards-inner,.ps-inner{grid-template-columns:1fr;}
   nav .nav-links{display:none;}
 }
 </style>
@@ -181,7 +181,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
   <div class="nav-logo">Captain Crypto Super Slots</div>
   <div class="nav-links">
     <a href="#speed">5-Second Payouts</a>
-    <a href="#staking">Earn While Idle</a>
+    <a href="#rewards">Earn While Idle</a>
     <a href="#features">Features</a>
     <a href="signup.html" class="nav-cta">PLAY FREE</a>
   </div>
@@ -192,7 +192,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
   <div class="hero-text">
     <div class="hero-eyebrow">⛓ PROVABLY FAIR · BLOCKCHAIN POWERED</div>
     <h1>CAPTAIN CRYPTO<span>SUPER SLOTS</span></h1>
-    <p class="hero-sub">The only slots game where your money <strong>never sits idle</strong> — earn <strong>staking rewards</strong> between spins and collect <strong>real crypto payouts in under 5 seconds.</strong></p>
+    <p class="hero-sub">The only slots game where your money <strong>never sits idle</strong> — earn <strong>daily rewards</strong> between spins and collect <strong>real crypto payouts in under 5 seconds.</strong></p>
 
     <div class="stat-pills">
       <div class="stat-pill sp-lightning">
@@ -202,18 +202,18 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
           <div class="small">XRP · XLM · BTC Lightning · ETH — instant settlement</div>
         </div>
       </div>
-      <div class="stat-pill sp-staking">
+      <div class="stat-pill sp-rewards">
         <div class="stat-pill-icon">📈</div>
         <div class="stat-pill-text">
-          <div class="big">Earn <em>Staking Rewards</em> While You Wait</div>
-          <div class="small">Your balance earns up to 15% APY — even between spins</div>
+          <div class="big">Earn <em>Daily Rewards</em> While You Wait</div>
+          <div class="small">Your balance earns up to 15% Daily Rewards — even between spins</div>
         </div>
       </div>
     </div>
 
     <div class="hero-btns">
       <a href="signup.html" class="btn-primary">PLAY FREE NOW</a>
-      <a href="#staking" class="btn-secondary">HOW STAKING WORKS</a>
+      <a href="#rewards" class="btn-secondary">HOW STAKING WORKS</a>
     </div>
     <div class="hero-badges">
       <div class="badge"><div class="bd" style="background:#0f8"></div>Provably Fair</div>
@@ -236,11 +236,11 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
       <div class="kb-sub">Win and your crypto lands in your wallet <strong>instantly.</strong> No hold times, no withdrawal queues, no middlemen. XRP and XLM settle in 3–5 seconds. Lightning BTC in under 1 second.</div>
     </div>
   </div>
-  <div class="kb-item kb-staking">
+  <div class="kb-item kb-rewards">
     <div class="kb-icon">📈</div>
     <div class="kb-text">
       <div class="kb-big">Stack Rewards While You Sit</div>
-      <div class="kb-sub">Every dollar in your game wallet is <strong>actively staking</strong> on our live validators. You earn yield 24/7 — while you sleep, while you're away, between every single spin.</div>
+      <div class="kb-sub">Every dollar in your game wallet is <strong>actively earning rewards</strong> on our live validators. You earn rewards 24/7 — while you sleep, while you're away, between every single spin.</div>
     </div>
   </div>
 </div>
@@ -285,26 +285,26 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
 </section>
 
 <!-- STAKING SECTION -->
-<section class="staking" id="staking">
-  <div class="staking-inner">
-    <div class="staking-text">
+<section class="rewards" id="rewards">
+  <div class="rewards-inner">
+    <div class="rewards-text">
       <h2>Your Money Never Sleeps</h2>
-      <p>Most games just hold your balance in a wallet doing nothing. We built something different. <strong>Every dollar deposited into Captain Crypto is put to work</strong> on our live blockchain validators — earning real staking yield around the clock.</p>
-      <p>You earn <strong>up to 15% APY</strong> on your game balance. That means even on days you don't spin, you're still making money. It stacks automatically — no action required from you.</p>
+      <p>Most games just hold your balance in a wallet doing nothing. We built something different. <strong>Every dollar deposited into Captain Crypto earns daily rewards</strong> on our live blockchain validators — earning real daily rewards around the clock.</p>
+      <p>You earn <strong>up to 15% Daily Rewards</strong> on your game balance. That means even on days you don't spin, you're still making money. It stacks automatically — no action required from you.</p>
       <p>This is powered by our own live <strong>XRPL, Stellar, Cosmos, and Chainlink</strong> node infrastructure running 24/7 in Miami, FL.</p>
-      <div class="staking-stat">
+      <div class="rewards-stat">
         <div class="ss-val">15%</div>
         <div class="ss-text">
-          <div class="ss-big">Annual Staking Yield on Deposits</div>
+          <div class="ss-big">Annual Rewards Yield on Deposits</div>
           <div class="ss-small">Paid daily · Compounds automatically · No lock-up period</div>
         </div>
       </div>
     </div>
-    <div class="staking-cards">
-      <div class="staking-card"><div class="sc-icon">💤</div><div class="sc-text"><div class="sc-title">Earn While You Sleep</div><div class="sc-desc">Staking rewards accrue every 24 hours to your balance — no spins required.</div></div></div>
-      <div class="staking-card"><div class="sc-icon">🔄</div><div class="sc-text"><div class="sc-title">Auto-Compounding</div><div class="sc-desc">Rewards automatically re-stake so your yield grows faster over time.</div></div></div>
-      <div class="staking-card"><div class="sc-icon">🔓</div><div class="sc-text"><div class="sc-title">No Lock-Up Period</div><div class="sc-desc">Withdraw your full balance — principal plus earned yield — any time.</div></div></div>
-      <div class="staking-card"><div class="sc-icon">📊</div><div class="sc-text"><div class="sc-title">Transparent On-Chain</div><div class="sc-desc">Every staking transaction is verifiable on the public blockchain ledger.</div></div></div>
+    <div class="rewards-cards">
+      <div class="rewards-card"><div class="sc-icon">💤</div><div class="sc-text"><div class="sc-title">Earn While You Sleep</div><div class="sc-desc">Daily rewards accrue every 24 hours to your balance — no spins required.</div></div></div>
+      <div class="rewards-card"><div class="sc-icon">🔄</div><div class="sc-text"><div class="sc-title">Auto-Compounding</div><div class="sc-desc">Rewards automatically re-rewards so your yield grows faster over time.</div></div></div>
+      <div class="rewards-card"><div class="sc-icon">🔓</div><div class="sc-text"><div class="sc-title">No Lock-Up Period</div><div class="sc-desc">Withdraw your full balance — principal plus earned yield — any time.</div></div></div>
+      <div class="rewards-card"><div class="sc-icon">📊</div><div class="sc-text"><div class="sc-title">Transparent On-Chain</div><div class="sc-desc">Every rewards transaction is verifiable on the public blockchain ledger.</div></div></div>
     </div>
   </div>
 </section>
@@ -315,7 +315,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
   <div class="section-sub">Built different from the ground up</div>
   <div class="features-grid">
     <div class="feat-card highlight"><span class="feat-icon">⚡</span><div class="feat-title">Under 5-Second Payouts</div><div class="feat-desc">Win crypto, get crypto. Automatic on-chain settlement in under 5 seconds via XRP, XLM, Lightning BTC, or ETH.</div></div>
-    <div class="feat-card highlight2"><span class="feat-icon">📈</span><div class="feat-title green">Stacking Rewards 24/7</div><div class="feat-desc">Your idle balance earns up to 15% APY staking yield on our live validators — compounding daily whether you play or not.</div></div>
+    <div class="feat-card highlight2"><span class="feat-icon">📈</span><div class="feat-title green">Stacking Rewards 24/7</div><div class="feat-desc">Your idle balance earns up to 15% Daily Rewards daily rewards on our live validators — compounding daily whether you play or not.</div></div>
     <div class="feat-card"><span class="feat-icon">⛓</span><div class="feat-title">Provably Fair Every Spin</div><div class="feat-desc">Every result generated by Chainlink VRF and recorded on-chain. Any player can independently verify any spin, any time.</div></div>
     <div class="feat-card"><span class="feat-icon">🎁</span><div class="feat-title">Free Daily Spins</div><div class="feat-desc">Spin every day at zero cost and earn real micro-crypto. No purchase ever required to win.</div></div>
     <div class="feat-card"><span class="feat-icon">📱</span><div class="feat-title">iOS · Android · Roku · Fire TV</div><div class="feat-desc">One account, every device. Mobile app, TV streaming, and browser — all synced in real time.</div></div>
@@ -332,7 +332,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
     <div class="crypto-card"><div class="cc-icon">Ξ</div><div class="cc-name">Ethereum</div><div class="cc-val">ERC-20 · ~12s</div></div>
     <div class="crypto-card"><div class="cc-icon">◈</div><div class="cc-name">XRP</div><div class="cc-val">~3s settle</div></div>
     <div class="crypto-card"><div class="cc-icon">✦</div><div class="cc-name">Stellar</div><div class="cc-val">~4s settle</div></div>
-    <div class="crypto-card"><div class="cc-icon">⬡</div><div class="cc-name">ATOM</div><div class="cc-val">Staking 15%</div></div>
+    <div class="crypto-card"><div class="cc-icon">⬡</div><div class="cc-name">ATOM</div><div class="cc-val">Rewards 15%</div></div>
     <div class="crypto-card"><div class="cc-icon">⛓</div><div class="cc-name">Chainlink</div><div class="cc-val">VRF Oracle</div></div>
   </div>
 </section>
@@ -343,7 +343,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
   <div class="section-sub">No forms. No ID check. No waiting.</div>
   <div class="steps">
     <div class="step"><div class="step-num">1</div><div class="step-title">Connect Wallet</div><div class="step-desc">Link your XRP, XLM, BTC or ETH wallet. Your keys, your coins. No email or password required.</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-title">Get Free Coins</div><div class="step-desc">Receive Gold Coins free on signup. Your balance starts earning staking yield from day one.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-title">Get Free Coins</div><div class="step-desc">Receive Gold Coins free on signup. Your balance starts earning daily rewards from day one.</div></div>
     <div class="step"><div class="step-num">3</div><div class="step-title">Spin & Win</div><div class="step-desc">Every spin is verified on-chain. Hit a win and crypto hits your wallet in under 5 seconds.</div></div>
     <div class="step"><div class="step-num">4</div><div class="step-title">Keep Earning</div><div class="step-desc">Step away and your balance keeps stacking. Come back richer — even on days you don't play.</div></div>
   </div>
@@ -355,7 +355,7 @@ footer{background:#030508;border-top:1px solid rgba(255,215,0,.1);padding:32px 5
   <p>The only casino game where you're earning even when you're not playing.</p>
   <div class="cta-highlights">
     <div class="ch ch-gold">⚡ Payouts Under 5 Seconds</div>
-    <div class="ch ch-green">📈 Up to 15% Staking APY</div>
+    <div class="ch ch-green">📈 Up to 15% Daily Rewards</div>
     <div class="ch ch-gold">🎁 Free to Play Forever</div>
     <div class="ch ch-green">⛓ Provably Fair On-Chain</div>
   </div>
