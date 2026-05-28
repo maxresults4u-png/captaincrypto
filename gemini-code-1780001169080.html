@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain Crypto | Pro Slot Engine</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Bebas+Neue&display=swap');
+
+        :root {
+            --neon-green: #00e676;
+            --pro-gold: #f0b429;
+            --deep-bg: #060a0d;
+            --card-bg: #081217;
+            --border-ui: #1a3040;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--deep-bg);
+            color: #c8d8e8;
+            font-family: 'IBM Plex Mono', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Scanline Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .machine-wrap {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-box { margin-bottom: 20px; }
+        .logo-main {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+            line-height: 0.9;
+        }
+
+        /* Slot Cabinet */
+        .cabinet {
+            background: var(--card-bg);
+            border: 2px solid var(--border-ui);
+            border-top: 4px solid var(--pro-gold);
+            padding: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .reel-window {
+            display: flex;
+            gap: 10px;
+            background: #040608;
+            border: 1px solid #0d1a24;
+            padding: 15px;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Gradient Overlays for Depth */
+        .reel-window::before, .reel-window::after {
+            content: ''; position: absolute; left: 0; right: 0; height: 40px; z-index: 5;
+        }
+        .reel-window::before { top: 0; background: linear-gradient(to bottom, #040608 0%, transparent 100%); }
+        .reel-window::after { bottom: 0; background: linear-gradient(to top, #040608 0%, transparent 100%); }
+
+        .reel {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        .symbol {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        /* UI HUD */
+        .hud {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+        }
+
+        .stat-group label { font-size: 9px; color: #4a6a7a; letter-spacing: 0.1em; display: block; text-transform: uppercase; }
+        .stat-group span { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #fff; }
+
+        .btn-spin {
+            width: 100%;
+            padding: 18px;
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: 0.2s;
+        }
+
+        .btn-spin:hover:not(:disabled) { background: var(--neon-green); color: #000; box-shadow: 0 0 20px rgba(0,230,118,0.4); }
+        .btn-spin:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
+
+        .win-flash { animation: winPulse 0.5s infinite alternate; }
+        @keyframes winPulse { from { color: #fff; } to { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); } }
+    </style>
+</head>
+<body>
+
+<div class="machine-wrap">
+    <div class="header-box">
+        <div class="logo-main">CAPTAIN CRYPTO</div>
+        <div style="font-size: 10px; color: #2a4a5a; letter-spacing: 0.3em; margin-top: 5px;">VERIFIABLE ON-CHAIN SLOTS</div>
+    </div>
+
+    <div class="cabinet">
+        <div class="reel-window" id="window">
+            <div class="reel" id="reel0"></div>
+            <div class="reel" id="reel1"></div>
+            <div class="reel" id="reel2"></div>
+        </div>
+
+        <div class="hud">
+            <div class="stat-group">
+                <label>Current Credits</label>
+                <span id="balance">1000</span>
+            </div>
+            <div class="stat-group">
+                <label>Last Payout</label>
+                <span id="last-win">--</span>
+            </div>
+        </div>
+
+        <button class="btn-spin" id="spinBtn" onclick="initiateSpin()">Execute Spin</button>
+    </div>
+    
+    <div id="status" style="margin-top: 15px; font-size: 10px; color: #2a4a5a;">SYSTEM READY // 0.45s BLOCK TIME SYNC</div>
+</div>
+
+<script>
+    // Asset Configuration
+    const SYMBOLS = ['₿', '🚀', '⭐', '💎', '🏴‍☠️', '⚡'];
+    const REEL_COUNT = 3;
+    const SYMBOL_HEIGHT = 150;
+    
+    let balance = 1000;
+    let isSpinning = false;
+
+    // Initialization: Populate reels with random start state
+    function init() {
+        for(let i=0; i < REEL_COUNT; i++) {
+            const reel = document.getElementById(`reel${i}`);
+            for(let j=0; j < 20; j++) { // Create a long strip for spinning effect
+                const div = document.createElement('div');
+                div.className = 'symbol';
+                div.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                reel.appendChild(div);
+            }
+        }
+    }
+
+    async function initiateSpin() {
+        if(isSpinning || balance < 10) return;
+
+        isSpinning = true;
+        balance -= 10;
+        document.getElementById('balance').textContent = balance;
+        document.getElementById('spinBtn').disabled = true;
+        document.getElementById('last-win').classList.remove('win-flash');
+        document.getElementById('status').textContent = "BROADCASTING TRANSACTION TO MEMPOOL...";
+
+        const results = [];
+        const animations = [];
+
+        for(let i=0; i < REEL_COUNT; i++) {
+            const reel = document.getElementById(`reel${i}`);
+            const stopIndex = Math.floor(Math.random() * SYMBOLS.length);
+            results.push(SYMBOLS[stopIndex]);
+
+            // Staggered stop logic
+            const promise = new Promise(resolve => {
+                setTimeout(() => {
+                    // Update the "virtual" top symbol to be our target result
+                    reel.children[0].textContent = SYMBOLS[stopIndex];
+                    reel.style.transition = `transform ${1 + i * 0.5}s cubic-bezier(0.2, 0, 0.2, 1)`;
+                    reel.style.transform = `translateY(0px)`;
+                    resolve();
+                }, i * 300);
+            });
+            animations.push(promise);
+        }
+
+        await Promise.all(animations);
+        setTimeout(() => checkResult(results), 2000);
+    }
+
+    function checkResult(results) {
+        let winAmount = 0;
+        if(results[0] === results[1] && results[1] === results[2]) {
+            winAmount = 150; // Jackpot
+        } else if (results[0] === results[1] || results[1] === results[2]) {
+            winAmount = 20; // Partial match
+        }
+
+        if(winAmount > 0) {
+            balance += winAmount;
+            const winEl = document.getElementById('last-win');
+            winEl.textContent = `+${winAmount}`;
+            winEl.classList.add('win-flash');
+            document.getElementById('balance').textContent = balance;
+            document.getElementById('status').textContent = "TRANSACTION CONFIRMED // PAYOUT RELEASED";
+        } else {
+            document.getElementById('last-win').textContent = "0";
+            document.getElementById('status').textContent = "BLOCK PROCESSED // NO MATCH DETECTED";
+        }
+
+        isSpinning = false;
+        document.getElementById('spinBtn').disabled = false;
+        
+        // Reset reel positions for next spin
+        for(let i=0; i < REEL_COUNT; i++) {
+            const reel = document.getElementById(`reel${i}`);
+            reel.style.transition = 'none';
+            reel.style.transform = 'translateY(-1500px)'; // Reset strip height
+        }
+    }
+
+    init();
+</script>
+
+</body>
+</html>
